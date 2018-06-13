@@ -1,16 +1,17 @@
 package Project;
 
+import Project.Exception.EmptyRecordException;
+
 import java.util.Scanner;
 
 public class Record {
 
-    String name, lastName, position;
-    int id, salary;
+    String id, name, lastName, position, salary;
 
     public Record() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Id:");
-        this.id = scan.nextInt();
+        this.id = scan.next();
         System.out.println("Name:");
         this.name = scan.next();
         System.out.println("Last name:");
@@ -18,15 +19,19 @@ public class Record {
         System.out.println("Position:");
         this.position = scan.next();
         System.out.println("Salary");
-        this.salary = scan.nextInt();
+        this.salary = scan.next();
     }
 
-    public Record(String name, String lastName, String position, int id, int salary) {
-        this.name = name;
-        this.lastName = lastName;
-        this.position = position;
-        this.id = id;
-        this.salary = salary;
+    public Record(String id, String name, String lastName, String position, String salary) {
+        if (allNull(name, lastName, position, id, salary)) {
+            throw new EmptyRecordException("You can't create empty record!", this);
+        } else {
+            this.name = name;
+            this.lastName = lastName;
+            this.position = position;
+            this.id = id;
+            this.salary = salary;
+        }
     }
 
     public String getName() {
@@ -53,19 +58,28 @@ public class Record {
         this.position = position;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getSalary() {
+    public String getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(String salary) {
         this.salary = salary;
+    }
+
+    boolean allNull(String... args) {
+        for (String arg : args) {
+            if (arg != null) {
+                return false;
+            }
+        }
+        return true;
     }
 }
