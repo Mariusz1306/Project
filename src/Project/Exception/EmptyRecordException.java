@@ -1,8 +1,16 @@
 package Project.Exception;
 
-public class EmptyRecordException extends RuntimeException{
+import Project.Record;
 
-    public EmptyRecordException(String message) {
+public class EmptyRecordException extends RuntimeException{
+    Record record;
+
+    public EmptyRecordException(String message, Record record) {
         super(message);
+        this.record = record;
+    }
+
+    public Record getRecord() {
+        return record;
     }
 }
