@@ -13,23 +13,23 @@ public class Project {
         static void MainMenu(Database database) {
             db = database;
             System.out.println("What do you want to do?");
-            System.out.println("1. Create record");
-            System.out.println("2. Update record");
-            System.out.println("3. Delete record");
             System.out.println("4. Select");
+            System.out.println("1. Insert");
+            System.out.println("2. Update");
+            System.out.println("3. Delete");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
-                    db.INSERT();
+                    //db.SELECT();
                     break;
                 case 2:
-                    db.UPDATE();
+                    //db.INSERT();
                     break;
                 case 3:
-                    db.DELETE();
+                    //db.UPDATE();
                     break;
                 case 4:
-                    db.SELECT();
+                    //db.DELETE();
                 default:
                     break;
             }
@@ -38,9 +38,10 @@ public class Project {
     
     public static void main(String[] args) {
         Database db = new Database();
-
-        while(true){
-                Menu.MainMenu(db);
-        }
+        db.SELECT("test table");
+        System.out.println("end");
+        //while(true){
+        //        Menu.MainMenu(db);
+        //}
     }
 }

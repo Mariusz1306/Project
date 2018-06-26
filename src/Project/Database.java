@@ -2,42 +2,20 @@ package Project;
 
 import Project.Exception.EmptyRecordException;
 
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
 public class Database {
-    Vector<Record> db;
+    Hashtable<String, Table> tables = new Hashtable<>();
 
-    public Database(){
-        this.db = new Vector<Record>();
+    public Database() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Create first table in your database: ");
+        System.out.println("Name your table: ");
+        String table_name = scan.nextLine();
+        Table table = new Table();
+        tables.put(table_name, table);
     }
-
-    public Database(Vector<Record> record) {
-        this.db = record;
-    }
-
-    public Database(Database database){
-        this.db = database.db;
-    }
-
-    public Vector<Record> getDb() {
-        return db;
-    }
-
-    public void setDb(Vector<Record> db) {
-        this.db = db;
-    }
-
-    public void addToDatabase(Record record){
-        db.add(record);
-    }
-
-
-    public void deleteByRecord(Record record){
-        db.remove(record);
-    }
-
+/*
     public void INSERT(){
         Scanner scan = new Scanner(System.in);
         String choice, string_tokens[];
@@ -171,11 +149,14 @@ public class Database {
             }
         }
     }
+    */
 
-    public void SELECT() {
-        for (int i = 0; i < db.size(); i++){
-            System.out.println("Element at " + i + ": ");
-            db.elementAt(i).Show();
+    public void SELECT(String key) {
+        try {
+            tables.get(key).showTable();
+        } catch (NullPointerException e){
+            System.out.println("~There is no table with that name~");
         }
     }
+
 }

@@ -2,92 +2,27 @@ package Project;
 
 import Project.Exception.EmptyRecordException;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Record {
 
-    String id, name, lastName, position, salary;
+    ArrayList values = new ArrayList();
 
-    public Record() {
+    public Record(int number_of_columns, ArrayList columns) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Id:");
-        this.id = scan.next();
-        System.out.println("Name:");
-        this.name = scan.next();
-        System.out.println("Last name:");
-        this.lastName = scan.next();
-        System.out.println("Position:");
-        this.position = scan.next();
-        System.out.println("Salary");
-        this.salary = scan.next();
-    }
-
-    public Record(String id, String name, String lastName, String position, String salary) {
-        if (allNull(name, lastName, position, id, salary)) {
-            throw new EmptyRecordException("You can't create empty record!", this);
-        } else {
-            this.name = name;
-            this.lastName = lastName;
-            this.position = position;
-            this.id = id;
-            this.salary = salary;
+        for (int i = 0; i < number_of_columns; i++){
+            System.out.println(columns.get(i) + ": ");
+            String value = scan.nextLine();
+            if (value.length() == 0)
+                    value = "null";
+            values.add(value);
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getSalary() {
-        return salary;
-    }
-
-    public void setSalary(String salary) {
-        this.salary = salary;
-    }
-
-    boolean allNull(String... args) {
-        for (String arg : args) {
-            if (arg != null) {
-                return false;
-            }
+    public void showRecord(){
+        for (int i = 0; i < values.size(); i++){
+            System.out.print(values.get(i) + " | ");
         }
-        return true;
-    }
-
-    void Show(){
-        System.out.println("Id: " + getId());
-        System.out.println("Name: " + getName());
-        System.out.println("Last name: " + getLastName());
-        System.out.println("Position: " + getPosition());
-        System.out.println("Salary: " + getSalary());
     }
 }
