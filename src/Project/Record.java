@@ -82,4 +82,12 @@ public class Record {
         }
         return true;
     }
+
+    void Show(){
+        System.out.println("Id: " + getId());
+        System.out.println("Name: " + getName());
+        System.out.println("Last name: " + getLastName());
+        System.out.println("Position: " + getPosition());
+        System.out.println("Salary: " + getSalary());
+    }
 }
