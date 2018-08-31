@@ -20,7 +20,8 @@ public class Project {
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
-                    //db.SELECT();
+                    String key = scan.nextLine();
+                    db.SELECT(key);
                     break;
                 case 2:
                     //db.INSERT();
